@@ -15,6 +15,7 @@
 
 ?>
 
+<!-- div containing the php code -->
 <div style="background-color:green;color:white;">
     <?php echo $test ?>
 </div>

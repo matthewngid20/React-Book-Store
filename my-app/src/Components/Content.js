@@ -11,6 +11,7 @@ import { About } from './About';
 import { Register } from './Register';
 import { Login } from './Login';
 import { Logout } from './Logout';
+import { AddData } from './Admin/AddData';
 
 export function Content( props ) {
 
@@ -20,6 +21,31 @@ export function Content( props ) {
     if(!firebase.apps.length){
         firebase.initializeApp(firebaseConfig);
     }
+
+    const db = firebase.firestore()
+
+    const addData = ( data ) => {
+        return new Promise( ( resolve,reject ) => {
+            db.collection('books').add( data )
+            .then( () => resolve( true ) )
+            .catch( (error) => reject(error) )
+        })
+    }
+
+    const storage = firebase.storage()
+
+    // Path is a string
+    const addImage = ( path, image ) => {
+        return new Promise( (resolve, reject) => {
+            storage.ref( path ).put(image)
+            .then( () => {
+                storage.ref( path ).getDownloadURL()
+                .then((url) => resolve(url))
+                .catch((errors) => reject(errors))
+            })
+            .catch((errors) => reject(errors) )
+        })
+    } 
 
     const registerUser = (email,password) => {
 
@@ -80,6 +106,9 @@ export function Content( props ) {
                 </Route>
                 <Route path="/logout">
                     <Logout handler={ logoutUser } />
+                </Route>
+                <Route path="/add">
+                    <AddData handler={ addData } imageHandler={ addImage } />
                 </Route>
             </Switch>
         </div>

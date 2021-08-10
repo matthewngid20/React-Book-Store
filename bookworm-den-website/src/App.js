@@ -18,14 +18,15 @@ const AuthNav = [
   {name: "Home", link: "/"},
   {name: "About", link: "/about"},
   {name: "Logout", link: "/logout"},
+  {name: "Add data", link: "/add"},
 ]
 
 function App() {
-  const [auth,setAuth] = useState( false )
+  const [auth, setAuth] = useState(false)
 
   return (
     <div className="App">
-      <Header name="Books" navigation={ (auth) ? AuthNav : Nav } />
+      <Header name="Bookworm Den" navigation={ (auth) ? AuthNav : Nav } auth={auth} />
       <Content authHandler = { setAuth } />
       <Footer />
     </div>

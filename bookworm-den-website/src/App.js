@@ -11,7 +11,6 @@ const Nav = [
   {name: "About", link: "/about"},
   {name: "Register", link: "/Register"},
   {name: "Login", link: "/login"},
-  {name: "Add data", link: "/add"},
 ]
 
 const AuthNav = [

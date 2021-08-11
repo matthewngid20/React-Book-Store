@@ -55,17 +55,47 @@ export function Detail(props) {
   }
   else {
     return (
-      <div className="row mt-4">
-        <div className="col-md-6">
-          <img className="img-fluid" src={book.cover_image} />
+      
+      <div className="container">
+
+        {/* Book info section */}
+        <div className="row mt-4">
+          <div className="col-md-4">
+            <img 
+            className="img-fluid" 
+            src={book.cover_image} 
+            style={{width: '300px', height: '100%'}}
+              />
+          </div>
+
+          <div className="col-md-6">
+            <h3>{book.title} ({book.year})</h3>
+            <h5>Author(s): {book.author}</h5>
+            <p>Series: {book.series}</p>
+            <p>Publisher: {book.publisher}</p>
+            <p>Genre(s): {book.genres}</p>
+            <p>{book.pages} pages</p>
+            <p>ISBN {book.isbn13} {book.isbn10}</p>
+            
+              <button 
+                type="button" 
+                className="btn btn-primary ms-2"
+                onClick={addToFavourites}
+                >
+                  Add to Favourites
+              </button>
+          </div>
         </div>
-        <div className="col-md-6">
-          <h3>{book.title}</h3>
-          <h4>By {book.author}</h4>
-          <p>{book.pages} pages</p>
-          <p>ISBN {book.isbn13} {book.isbn10}</p>
-          <p>Published by {book.publisher}</p>
-          <p>Year {book.year}</p>
+
+        <div className="row mt-4">
+          <div className="col-md-auto">
+            <h5>Synopsis</h5>
+            <p>{book.synopsis}</p>
+          </div>
+        </div>
+
+        {/* Review section */}
+        <div className="row mt-4">
           <div className="d-flex">
             <button 
               type="button" 
@@ -74,14 +104,8 @@ export function Detail(props) {
               >
                 Review book
             </button>
-            <button 
-              type="button" 
-              className="btn btn-primary ms-2"
-              onClick={addToFavourites}
-              >
-                Add to Favourites
-            </button>
           </div>
+
           <div className="mt-4" style={{display: (showReview === true) ? "block" : "none"}}>
             <h5>Review {book.title}</h5>
             <form id="review" onSubmit={handleReview}>
@@ -99,6 +123,7 @@ export function Detail(props) {
             </form>
           </div>
         </div>
+
       </div>
     )
   }

@@ -58,8 +58,8 @@ export function AddData(props) {
       <h2>Add a book</h2>
       <label htmlFor="title">Book Title</label>
       <input type="text" className="form-control" name="title" placeholder="Book title" id="title" />
-      <label htmlFor="tagline">Tag Line</label>
-      <input type="text" className="form-control" name="tagline" placeholder="Book tag line" id="tagline" />
+      <label htmlFor="series">Series</label>
+      <input type="text" className="form-control" name="series" placeholder="Book series" id="series" />
 
       <div className="row">
         <div className="col-md-6">
@@ -71,9 +71,12 @@ export function AddData(props) {
           <input type="text" className="form-control" name="isbn10" placeholder="ISBN 10" id="isbn10" />
         </div>
       </div>
-
       <label htmlFor="author">Author(s)</label>
       <input type="text" className="form-control" name="author" placeholder="Separate multiple authors with comma" id="author" />
+      <label htmlFor="genres">Genre(s)</label>
+      <input type="text" className="form-control" name="genres" placeholder="Separate multiple genres with comma" id="genres" />
+      <label htmlFor="synopsis">Synopsis</label>
+      <textarea className="form-control" name="synopsis" placeholder="Book synopsis" id="synopsis" rows="3" />
       <label htmlFor="publisher">Publisher</label>
       <input type="text" className="form-control" name="publisher" placeholder="Book publisher" id="publisher" />
       <label htmlFor="year">Year</label>

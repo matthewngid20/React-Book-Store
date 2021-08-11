@@ -27,13 +27,12 @@ export function Home ( props ) {
             style={{top:0,bottom:0,left:0,right:0}}/>
             <img 
             src={item.cover_image} 
-            className="card-img-top border border-primary" 
+            className="card-img-top" 
             alt={item.title} 
-            style={{width: '100%', height: '300px', objectFit: 'cover', objectPosition: 'center'}}
+            style={{width: '100%', height: '300px', objectFit: 'scale-down', objectPosition: 'center'}}
             />
             <div className="card-body">
               <h5 className="card-title">{item.title}</h5>
-              <p style={{minHeight: '5ch'}}>{item.tagline}</p>
               <p>by {item.author}</p>
             </div>
           </div>

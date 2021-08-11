@@ -41,11 +41,35 @@ export function Home ( props ) {
     })
     return(
       <div className="home">
-        <h2>Books</h2>
-        <div className="row">
-        { Books }
-        </div>
+
+          <div className="row mt-4">
+            <p className="text-center">(banner image goes here)</p>
+          </div>
+
+          <div className="row mt-4 mb-4 justify-content-center">
+          { Books }
+          </div>
+
+          <div className="row mt-4 mb-4 justify-content-space-between">
+
+            <div className="col-md-6">
+              <h4 className="text-center">Some book news</h4>
+              <p className="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+                nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+
+            <div className="col-md-4">
+              <div className="row mt-4 text-center">
+                <p>(book cover goes here)</p>
+              </div>
+              <div className="row mt-4 text-center">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+              </div>
+            </div>
+          </div>
       </div>
+       
     )
   }
   

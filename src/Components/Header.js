@@ -30,7 +30,7 @@ export function Header(props) {
 
         <form className="d-flex flex-fill my-3 my-md-0 flex-fill order-4 order-sm-3 order-md-2">
           <input className="form-control me-md-2" type="search" placeholder="Search for books" aria-label="Search" />
-          <button className="btn btn-outline-success" type="submit">
+          <button className="btn btn-outline-secondary" type="submit">
             <i className="fas fa-search"></i>
           </button>
         </form>

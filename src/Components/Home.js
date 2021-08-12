@@ -19,7 +19,7 @@ export function Home ( props ) {
   else {
     const Books = data.map( (item, key) => {
       return(
-        <div className="col-md-3 my-2" key={key}>
+        <div className="col-md-3 my-2 zoom" key={key}>
           <div className="card position-relative">
             <Link 
             className="position-absolute" 

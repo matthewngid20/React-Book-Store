@@ -19,7 +19,8 @@
   color:#473b2e;
 }
 .book-shadow{
-  box-shadow: 8px 6px;
+  box-shadow: 12px 5px;
+  border-radius: 5px  
 }
 /* .container-slider {
   display: flex;

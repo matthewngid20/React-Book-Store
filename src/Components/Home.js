@@ -20,17 +20,17 @@ export function Home ( props ) {
   else {
     const Books = data.map( (item, key) => {
       return(
-        <div className="col-md-3 my-2 zoom" key={key}>
-          <div className="card position-relative bg-custom-brown text-custom-beige">
+        <div className="container-slider col-md-3 my-2 zoom" key={key}>
+          <div className="card book position-relative bg-custom-brown text-custom-beige">
             <Link 
             className="position-absolute" 
             to={"book/" + item.id } 
             style={{top:0,bottom:0,left:0,right:0}}/>
             <img 
             src={item.cover_image} 
-            className="card-img-top" 
+            className=" book-shadow card-img-top " 
             alt={item.title} 
-            style={{width: '100%', height: '300px', objectFit: 'scale-down', objectPosition: 'center'}}
+            style={{width: '100%', objectFit: 'scale-down', objectPosition: 'center'}}
             />
             <div className="card-body">
               <h5 className="card-title">{item.title}</h5>
@@ -51,9 +51,7 @@ export function Home ( props ) {
           <div className="row justify-content-center bg-custom-brown text-center">
           { Books }
           </div>
-
           <div className="row justify-content-space-between bg-custom-blue text-light">
-
             <div className="col-md-6">
               <h4 className="text-center">Some book news</h4>
               <p className="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 

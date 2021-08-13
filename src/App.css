@@ -4,7 +4,7 @@
   grid-template-rows: auto 1fr auto;
 }
 .zoom {
-  padding: 50px;
+  padding: 80px;
   transition: transform .2s;
   margin: 0 auto;
 }
@@ -18,3 +18,18 @@
   background-color: #dbd1c5;
   color:#473b2e;
 }
+.book-shadow{
+  box-shadow: 8px 6px;
+}
+/* .container-slider {
+  display: flex;
+  padding: 0 55px;
+}
+
+.item {
+  background: green;
+  flex: 0 0 19.7%;
+  text-align: center;
+  margin: 0 2px;
+  transition: transform 300ms ease 100ms;
+} */

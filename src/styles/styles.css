@@ -37,3 +37,17 @@
     color: #ffffff;
     border-color: #473b2e;
   }
+
+  .btn-custom-blue {
+    color: #ffffff;
+    background-color: #555794;
+    border-radius: 5px;
+  }
+
+  .btn-custom-blue:hover,
+  .btn-custom-blue:active,
+  .btn-custom-blue:focus,
+  .btn-custom-blue.active {
+    background-color: #444477;
+    color: #ffffff;
+  }

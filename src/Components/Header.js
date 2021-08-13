@@ -1,5 +1,5 @@
 import { NavLink, Link } from 'react-router-dom';
-import '../styles/styles.css'
+import '../App.css'
 
 export function Header(props) {
   const SiteNav = props.navigation.map((item, itemKey) => {

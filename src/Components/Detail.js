@@ -80,12 +80,6 @@ export function Detail(props) {
     }
   }
 
-
-
-
-
-
-
   if (!book) {
     return <Spinner size={64}/>
   }
@@ -95,74 +89,81 @@ export function Detail(props) {
       <div className="container">
 
         {/* Book info section */}
-        <div className="row mt-4">
-          <div className="col-md-4">
-            <img 
-            className="img-fluid" 
-            src={book.cover_image} 
-            style={{width: '300px', height: '100%'}}
-              />
+        <div className="bg-custom-blue text-light p-5">
+          <div className="row">
+            <div className="col-md-4">
+              <img 
+              className="img-fluid" 
+              src={book.cover_image} 
+              style={{width: '300px', height: '100%'}}
+                />
+            </div>
+
+            <div className="col-md-6">
+              <h3>{book.title} ({book.year})</h3>
+              <h5>Author(s): {book.author}</h5>
+              <p>Series: {book.series}</p>
+              <p>Publisher: {book.publisher}</p>
+              <p>Genre(s): {book.genres}</p>
+              <p>{book.pages} pages</p>
+              <p>ISBN {book.isbn13} {book.isbn10}</p>
+              
+                <button 
+                  type="button" 
+                  className="btn btn-custom-blue"
+                  onClick={addToFavourites}
+                  >
+                    Add to Favourites
+                </button>
+            </div>
           </div>
 
-          <div className="col-md-6">
-            <h3>{book.title} ({book.year})</h3>
-            <h5>Author(s): {book.author}</h5>
-            <p>Series: {book.series}</p>
-            <p>Publisher: {book.publisher}</p>
-            <p>Genre(s): {book.genres}</p>
-            <p>{book.pages} pages</p>
-            <p>ISBN {book.isbn13} {book.isbn10}</p>
-            
+          <div className="row mt-4">
+            <div className="col-md-auto">
+              <h5>Synopsis</h5>
+              <p>{book.synopsis}</p>
+            </div>
+          </div>          
+        </div>
+
+  
+        {/* Review section */}
+        <div className="bg-custom-brown text-light p-5">
+          <div className="row">
+          <Reviews items={bookReviews}/>
+          <p className="text-center mt-4">Did you read this book? Tell us what you think!</p>
+            <div className="d-flex justify-content-center">
               <button 
                 type="button" 
-                className="btn btn-primary ms-2"
-                onClick={addToFavourites}
+                className="btn btn-custom-blue"
+                onClick={addReview}
                 >
-                  Add to Favourites
+                  Leave a review
               </button>
-          </div>
-        </div>
+            </div>
 
-        <div className="row mt-4">
-          <div className="col-md-auto">
-            <h5>Synopsis</h5>
-            <p>{book.synopsis}</p>
+            <div className="mt-5" style={{display: (showReview === true) ? "block" : "none"}}>
+              <h5>Review {book.title} ({book.year}) by {book.author}</h5>
+              <form id="review" onSubmit={handleReview}>
+                <label htmlFor="stars" className="mt-2">Your rating</label>
+                <select className="form-select bg-custom-beige mt-2" name="stars" id="stars" defaultValue="5">
+                  <option value="1">1 star</option>
+                  <option value="2">2 stars</option>
+                  <option value="3">3 stars</option>
+                  <option value="4">4 stars</option>
+                  <option value="5">5 stars</option>
+                </select>
+                <label className="mt-2">Your review (no spoilers!)</label>
+                <textarea name="comment" cols="30" rows="3" className="form-control bg-custom-beige mt-2" placeholder="This book made me feel..."></textarea>
+                <input type="hidden" name="bookId" value={bookId} />
+                <input type="hidden" name="userId" value={(props.user) ? props.user.uid: ""} />
+                <input type="hidden" name="userName" value={(props.user) ? props.user.displayName : ""} />
+                <div className="d-flex justify-content-center">
+                  <button type="submit" className="btn btn-custom-blue m-4">Submit</button>
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
-
-        {/* Review section */}
-        <div className="row mt-4">
-          <div className="d-flex">
-            <button 
-              type="button" 
-              className="btn btn-primary"
-              onClick={addReview}
-              disabled={ (disableReview) ? true : false }
-              >
-                Review book
-            </button>
-          </div>
-
-          <div className="mt-4" style={{display: (showReview === true) ? "block" : "none"}}>
-            <h5>Review {book.title}</h5>
-            <form id="review" onSubmit={handleReview}>
-              <label htmlFor="stars">Stars</label>
-              <select className="form-select" name="stars" id="stars" defaultValue="5">
-                <option value="1">1 star</option>
-                <option value="2">2 stars</option>
-                <option value="3">3 stars</option>
-                <option value="4">4 stars</option>
-                <option value="5">5 stars</option>
-              </select>
-              <label>Say something about the book (no spoilers!)</label>
-              <textarea name="comment" cols="30" rows="3" className="form-control" placeholder="I love this book..."></textarea>
-              <input type="hidden" name="bookId" value={bookId} />
-              <input type="hidden" name="userId" value={(props.user) ? props.user.uid: ""} />
-              <input type="hidden" name="userName" value={(props.user) ? props.user.displayName : ""} />
-              <button type="submit" className="btn btn-success mt-2">Save</button>
-            </form>
-          </div>
-          <Reviews items={bookReviews}/>
         </div>
       </div>
     )

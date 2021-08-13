@@ -25,3 +25,66 @@
 img{
   padding:0 !important;
 }
+
+
+
+
+.navbar-custom .nav-link{
+  color: #473b2e;
+}
+
+.bg-custom-beige{
+  background-color: #dbd1c5;
+}
+
+.bg-custom-brown{
+  background-color: #695540;
+}
+
+.bg-custom-blue{
+  background-color: #505167;
+}
+
+.bg-custom-review{
+  background-color: #6c645c;
+  border-color: #dbd1c5;
+}
+
+.text-custom{
+  color: #473b2e;
+  border-color: transparent;  
+}
+
+.text-custom-beige{
+  color: #dbd1c5;
+  border-color: transparent;   
+}
+
+.btn-outline-custom {
+  color: #473b2e;
+  border-color: #473b2e;
+  border-radius: 5px;
+}
+
+.btn-outline-custom:hover,
+.btn-outline-custom:active,
+.btn-outline-custom:focus,
+.btn-outline-custom.active {
+  background: #473b2e;
+  color: #ffffff;
+  border-color: #473b2e;
+}
+
+.btn-custom-blue {
+  color: #ffffff;
+  background-color: #555794;
+  border-radius: 5px;
+}
+
+.btn-custom-blue:hover,
+.btn-custom-blue:active,
+.btn-custom-blue:focus,
+.btn-custom-blue.active {
+  background-color: #444477;
+  color: #ffffff;
+}

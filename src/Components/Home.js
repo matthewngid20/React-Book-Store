@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import '../styles/styles.css';
+import '../App.css';
 import image from '../resources/website_banner.png';
 
 import { Spinner } from "./Spinner";

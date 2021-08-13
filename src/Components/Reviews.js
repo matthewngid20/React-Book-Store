@@ -37,7 +37,7 @@ export function Reviews ( props ) {
   if( reviews ) {
     const ReviewItems = reviews.map( (item,key) => {
       return (
-      <div className="review card my-2" key={key}>
+      <div className="review card my-2 bg-custom-review" key={key}>
         <div className="card-body">
           <h6 className="card-title">{item.comment}</h6>
           <Stars number={item.stars}/>
@@ -47,8 +47,9 @@ export function Reviews ( props ) {
       )
     })
     return(
-    <div className="reviews mt-4">
-      <h5>Reviews ({reviews.length})</h5>
+    <div className="reviews">
+      <h3 className="text-center">Reviews</h3>
+      <p className="text-center mb-4">({reviews.length} reviews)</p>
       {ReviewItems}
     </div>
   )}

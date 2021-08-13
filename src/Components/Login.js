@@ -64,7 +64,7 @@ export function Login ( props ) {
           <button 
             type="submit" 
             className="btn btn-custom-blue flex-fill mt-2"
-            disabled={ (!validForm) ? true : false }
+            //disabled={ (!validForm) ? true : false }
           >
             Login
           </button>

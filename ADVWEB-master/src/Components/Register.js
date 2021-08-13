@@ -84,7 +84,7 @@ export function Register(props) {
           name="username" 
           id="username" 
           onChange={validateUserName} 
-          placeholder="letters and numbers no spaces" 
+          placeholder="Username" 
         />
         <div className="invalid-feedback">{userNameErrors}</div>
         <label className="form-label" htmlFor="email">Email</label>
@@ -94,7 +94,7 @@ export function Register(props) {
           name="email" 
           id="email" 
           onChange={validateEmail}
-          placeholder="me@example.com" 
+          placeholder="example@email.com" 
         />
         <div className="invalid-feedback">{emailErrors}</div>
         <label className="form-label" htmlFor="password">Password</label>
@@ -103,7 +103,7 @@ export function Register(props) {
           type="password" 
           name="password" 
           id="password" 
-          placeholder="minimum 8 characters" 
+          placeholder="Password" 
           onChange={validatePassword}
         />
         <div className="invalid-feedback">{passwordErrors}</div>

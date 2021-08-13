@@ -2,13 +2,13 @@
 export function emailValidator(email) {
   let errors = []
   if (email.indexOf('@') === 0) {
-    errors.push('Need username before "@" symbol')
+    errors.push('Please insert a valid email.')
   }
   if (email.indexOf('@') === -1) {
-    errors.push('Need "@" symbol after username')
+    errors.push('Please insert a valid email.')
   }
   if (email.split('.').length < 2) {
-    errors.push('Need tld, eg .com')
+    errors.push('Please insert a valid email.')
   }
 
   if (errors.length === 0) {
@@ -21,11 +21,11 @@ export function emailValidator(email) {
 
 export function passwordValidator(password) {
   let errors = []
-  // -- check password length
+  // Password length validator
   if (password.length < 8) {
-    errors.push('Minimum length is 8 characters')
+    errors.push('Please enter a password with a minimum length of 8 characters.')
   }
-  // -- check if it contains capital
+  // Capital letter validator
   const caps = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
   const chars = password.split('')
   let capsCount = 0
@@ -35,10 +35,10 @@ export function passwordValidator(password) {
     if (parseInt(chr)) { numCount++ }
   })
   if (capsCount === 0) {
-    errors.push('Need to contain a capital letter')
+    errors.push('Your password must contain at least one capital letter.')
   }
   if (numCount === 0) {
-    errors.push('Need to contain a number')
+    errors.push('Your password must contain at least one number.')
   }
 
   if (errors.length === 0) {
@@ -55,7 +55,7 @@ export function userNameValidator(name) {
   // check length of name
   const len = name.length
   if (len < 6) {
-    errors.push("minimum 6 characters")
+    errors.push("Your username must have a length of at least 6 characters.")
   }
   // -- check if it contains invalid characters including space
   // list of invalid characters
@@ -69,12 +69,12 @@ export function userNameValidator(name) {
   if (invalidCount > 0) {
     errors.push(`contains ${invalidCount} invalid ${(invalidCount > 1) ? "characters" : "character"}`)
   }
-  // -- check if all characters are numbers
+  // Number characters validator
   if (Number(name)) {
-    errors.push("cannot contain only numbers")
+    errors.push("Your username must contain letters.")
   }
   if (Number(name.charAt(0))) {
-    errors.push("first character cannot be a number")
+    errors.push("Your username cannot start with a number.")
   }
   
   if (errors.length === 0) {

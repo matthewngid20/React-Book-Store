@@ -43,7 +43,7 @@ export function Home ( props ) {
       <div className="home">
 
           <div className="row mt-4">
-            <p className="text-center">(banner image goes here)</p>
+            <img src = ""></img>
           </div>
 
           <div className="row mt-4 mb-4 justify-content-center">

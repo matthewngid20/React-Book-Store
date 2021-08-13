@@ -1,7 +1,7 @@
 export function Footer( props ) {
     return(
-      <footer className="footer bg-dark text-light">
-        <div className="container text-light">
+      <footer className="footer">
+        <div className="container ">
           <div className="row justify-content-space-between mt-3">
             <div className="col-md-auto">
               <i className="fab fa-facebook-square"></i>

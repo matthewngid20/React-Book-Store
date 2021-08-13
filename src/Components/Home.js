@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import '../styles/styles.css'
 
 import { Spinner } from "./Spinner";
 
@@ -20,7 +21,7 @@ export function Home ( props ) {
     const Books = data.map( (item, key) => {
       return(
         <div className="col-md-3 my-2 zoom" key={key}>
-          <div className="card position-relative">
+          <div className="card position-relative bg-custom-brown text-custom-beige">
             <Link 
             className="position-absolute" 
             to={"book/" + item.id } 
@@ -46,11 +47,11 @@ export function Home ( props ) {
             <p className="text-center">(banner image goes here)</p>
           </div>
 
-          <div className="row mt-4 mb-4 justify-content-center">
+          <div className="row mt-4 mb-4 justify-content-center bg-custom-brown text-center">
           { Books }
           </div>
 
-          <div className="row mt-4 mb-4 justify-content-space-between">
+          <div className="row mt-4 mb-4 justify-content-space-between bg-custom-blue text-light">
 
             <div className="col-md-6">
               <h4 className="text-center">Some book news</h4>

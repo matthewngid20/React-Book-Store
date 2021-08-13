@@ -1,4 +1,5 @@
 import { NavLink, Link } from 'react-router-dom';
+import '../styles/styles.css'
 
 export function Header(props) {
   const SiteNav = props.navigation.map((item, itemKey) => {
@@ -11,11 +12,11 @@ export function Header(props) {
   
   return (
 
-    <div className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div className="navbar navbar-expand-lg navbar-custom bg-custom-beige">
 
       <div className="container-fluid">
 
-        <Link className="navbar-brand order-0 order-sm-0 order-md-0" to="/">{props.name}</Link>
+        <Link className="navbar-brand order-0 order-sm-0 order-md-0 text-custom" to="/">{props.name}</Link>
         <button 
           className="navbar-toggler order-3 order-sm-4" 
           type="button" 
@@ -30,7 +31,7 @@ export function Header(props) {
 
         <form className="d-flex flex-fill my-3 my-md-0 flex-fill order-4 order-sm-3 order-md-2">
           <input className="form-control me-md-2" type="search" placeholder="Search for books" aria-label="Search" />
-          <button className="btn btn-outline-secondary" type="submit">
+          <button className="btn btn-outline-custom" type="submit">
             <i className="fas fa-search"></i>
           </button>
         </form>

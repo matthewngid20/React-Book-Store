@@ -1,0 +1,39 @@
+.navbar-custom .nav-link{
+    color: #473b2e;
+}
+
+.bg-custom-beige{
+    background-color: #dbd1c5;
+}
+
+.bg-custom-brown{
+    background-color: #695540;
+}
+
+.bg-custom-blue{
+    background-color: #505167;
+}
+
+.text-custom{
+    color: #473b2e;
+}
+
+.text-custom-beige{
+    color: #dbd1c5;
+    border-color: transparent;   
+}
+
+.btn-outline-custom {
+    color: #473b2e;
+    border-color: #473b2e;
+    border-radius: 5px;
+  }
+  
+  .btn-outline-custom:hover,
+  .btn-outline-custom:active,
+  .btn-outline-custom:focus,
+  .btn-outline-custom.active {
+    background: #473b2e;
+    color: #ffffff;
+    border-color: #473b2e;
+  }

@@ -41,18 +41,18 @@ export function Home ( props ) {
       )
     })
     return(
-      
+      <>
       <div className="home">
 
           <div className="row mt-4">
             <img src = ""></img>
           </div>
 
-          <div className="row mt-4 mb-4 justify-content-center bg-custom-brown text-center">
+          <div className="row justify-content-center bg-custom-brown text-center">
           { Books }
           </div>
 
-          <div className="row mt-4 mb-4 justify-content-space-between bg-custom-blue text-light">
+          <div className="row justify-content-space-between bg-custom-blue text-light">
 
             <div className="col-md-6">
               <h4 className="text-center">Some book news</h4>
@@ -70,7 +70,7 @@ export function Home ( props ) {
             </div>
           </div>
       </div>
-       
+       </>
     )
   }
   

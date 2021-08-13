@@ -1,10 +1,18 @@
 import { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router";
 import {Spinner} from './Spinner'
+import { Reviews } from "./Reviews";
 
 export function Detail(props) {
   const [book, setBook] = useState()
+  const [favourites,setFavourites] = useState()
   const [showReview, setShowReview] = useState(false)
+  const [bookReviews,setBookReviews] = useState()
+  // disable review button if user has reviewed the book
+  const [disableReview, setDisableReview] = useState( false )
+  // disable favourite button if user has added the book
+  const [disableFavs,setDisableFavs] = useState(false)
+
 
   const { bookId } = useParams()
   const history = useHistory()
@@ -16,7 +24,27 @@ export function Detail(props) {
         .then((bookData) => setBook(bookData))
         .catch((error) => console.log(error))
     }
+    if( !bookReviews ) {
+      props.getReviews( bookId )
+      .then( (result) => {
+        setBookReviews( result )
+      })
+      .catch( (error) => console.log(error) )
+    }
+    // get favourites here
   })
+
+  useEffect( () => {
+    if( bookReviews && props.user ) {
+      bookReviews.forEach( (review) => {
+        if( review.userId == props.user.uid ) {
+          setDisableReview( true )
+        }
+      })
+    }
+    // check if user has this book in favourites, disable fav button if yes
+  }, [bookReviews])
+
 
   const addReview = () => {
     if( props.auth === true ) {
@@ -24,7 +52,9 @@ export function Detail(props) {
       setShowReview( true )
     }
     else {
-      history.push(`/login?returnPath=book/${bookId}`)
+      // if user is not logged in take them to login page and set this page as a return path,
+      // so user can be taken back here after login/ register
+      history.push(`/login?returnPath=book/${bookId}&msg=${escape("Log in to review "+book.title)}`)
     }
   }
 
@@ -32,12 +62,12 @@ export function Detail(props) {
     event.preventDefault()
     const data = new FormData( event.target )
     let review = {}
-    review.stars = data.get('stars')
-    review.comment = data.get('comment')
-    review.book = bookId
-    review.user = props.user.uid
+    data.forEach( (value,key) => review[key] = value )
     props.reviewHandler( review )
-      .then( res => console.log(res) )
+      .then( () => {
+        setDisableReview(true)
+        setShowReview(false)
+      } )
       .catch( error => console.log(error) )
   }
 
@@ -49,6 +79,12 @@ export function Detail(props) {
       history.push('/login/'+bookId)
     }
   }
+
+
+
+
+
+
 
   if (!book) {
     return <Spinner size={64}/>
@@ -101,6 +137,7 @@ export function Detail(props) {
               type="button" 
               className="btn btn-primary"
               onClick={addReview}
+              disabled={ (disableReview) ? true : false }
               >
                 Review book
             </button>
@@ -110,7 +147,7 @@ export function Detail(props) {
             <h5>Review {book.title}</h5>
             <form id="review" onSubmit={handleReview}>
               <label htmlFor="stars">Stars</label>
-              <select className="form-select" name="stars" id="stars">
+              <select className="form-select" name="stars" id="stars" defaultValue="5">
                 <option value="1">1 star</option>
                 <option value="2">2 stars</option>
                 <option value="3">3 stars</option>
@@ -119,11 +156,14 @@ export function Detail(props) {
               </select>
               <label>Say something about the book (no spoilers!)</label>
               <textarea name="comment" cols="30" rows="3" className="form-control" placeholder="I love this book..."></textarea>
+              <input type="hidden" name="bookId" value={bookId} />
+              <input type="hidden" name="userId" value={(props.user) ? props.user.uid: ""} />
+              <input type="hidden" name="userName" value={(props.user) ? props.user.displayName : ""} />
               <button type="submit" className="btn btn-success mt-2">Save</button>
             </form>
           </div>
+          <Reviews items={bookReviews}/>
         </div>
-
       </div>
     )
   }

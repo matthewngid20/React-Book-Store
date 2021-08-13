@@ -6,6 +6,8 @@ Can you pull this to your local?
 
 hello hello 12:34 text change
 
+Hi Rica 12:36PM
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

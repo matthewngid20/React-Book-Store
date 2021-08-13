@@ -1,6 +1,9 @@
 # Getting Started with Create React App
 New repo 
 Can you pull this to your local? 
+
+12:11PM text  changes
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

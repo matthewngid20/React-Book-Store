@@ -2,13 +2,13 @@
 export function emailValidator(email) {
   let errors = []
   if (email.indexOf('@') === 0) {
-    errors.push('Need username before "@" symbol')
+    errors.push('Please insert a valid email.')
   }
   if (email.indexOf('@') === -1) {
-    errors.push('Need "@" symbol after username')
+    errors.push('Please insert a valid email.')
   }
   if (email.split('.').length < 2) {
-    errors.push('Need tld, eg .com')
+    errors.push('Please insert a valid email.')
   }
 
   if (errors.length === 0) {
@@ -23,7 +23,7 @@ export function passwordValidator(password) {
   let errors = []
   // -- check password length
   if (password.length < 8) {
-    errors.push('Minimum length is 8 characters')
+    errors.push('Password must be at least 8 characters long')
   }
   // -- check if it contains capital
   const caps = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
@@ -35,10 +35,10 @@ export function passwordValidator(password) {
     if (parseInt(chr)) { numCount++ }
   })
   if (capsCount === 0) {
-    errors.push('Need to contain a capital letter')
+    errors.push('Password must contain at least one capital letter.')
   }
   if (numCount === 0) {
-    errors.push('Need to contain a number')
+    errors.push('Password must contain at least one number.')
   }
 
   if (errors.length === 0) {
@@ -55,7 +55,7 @@ export function userNameValidator(name) {
   // check length of name
   const len = name.length
   if (len < 6) {
-    errors.push("minimum 6 characters")
+    errors.push("Username must be at least 6 characters long.")
   }
   // -- check if it contains invalid characters including space
   // list of invalid characters
@@ -71,10 +71,10 @@ export function userNameValidator(name) {
   }
   // -- check if all characters are numbers
   if (Number(name)) {
-    errors.push("cannot contain only numbers")
+    errors.push("Username must contain letters.")
   }
   if (Number(name.charAt(0))) {
-    errors.push("first character cannot be a number")
+    errors.push("Username cannot start with a number.")
   }
   
   if (errors.length === 0) {

@@ -53,18 +53,18 @@ export function Login ( props ) {
   }
 
   return(
-    <div className="row mt-4">
-      <form className="col-md-4 offset-md-4" id="login" onSubmit={ submitHandler }>
-        <h4>Sign in to your account</h4>
-        <label className="form-label" htmlFor="email">Email</label>
-        <input className="form-control" type="email" name="email" id="email" />
-        <label className="form-label" htmlFor="password">Password</label>
-        <input className="form-control" type="password" name="password" id="password" />
+    <div className="row pt-4 bg-custom-blue text-light" style={{height:'100%'}}>
+      <form className="col-md-4 offset-md-4 mt-4" id="login" onSubmit={ submitHandler }>
+        <h3 className="text-center">Login to your account</h3>
+        <label className="form-label mt-4" htmlFor="email">Email</label>
+        <input className="form-control" type="email" name="email" id="email" placeholder="email@address.com" />
+        <label className="form-label mt-2" htmlFor="password">Password</label>
+        <input className="form-control" type="password" name="password" id="password" placeholder="Password" />
         <div className="d-flex justify-content-center mt-3">
           <button 
             type="submit" 
-            className="btn btn-primary flex-fill"
-            //disabled={ (!validForm) ? true : false }
+            className="btn btn-custom-blue flex-fill mt-2"
+            disabled={ (!validForm) ? true : false }
           >
             Login
           </button>

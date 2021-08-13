@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import '../styles/styles.css'
+import '../styles/styles.css';
+import image from '../resources/website_banner.png';
 
 import { Spinner } from "./Spinner";
 
@@ -21,7 +22,7 @@ export function Home ( props ) {
     const Books = data.map( (item, key) => {
       return(
         <div className="container-slider col-md-3 my-2 zoom" key={key}>
-          <div className="card book position-relative bg-custom-brown text-custom-beige">
+          <div className="card book position-relative bg-custom-beige text-custom">
             <Link 
             className="position-absolute" 
             to={"book/" + item.id } 
@@ -41,20 +42,19 @@ export function Home ( props ) {
       )
     })
     return(
-      <>
       <div className="home">
 
-          <div className="row mt-4">
-            <img src = ""></img>
+          <div className="row">
+            <img src={image} className="img-fluid" style={{width:'100%', height:'100%'}}/>
           </div>
 
-          <div className="row justify-content-center bg-custom-brown text-center">
+          <div className="row justify-content-center bg-custom-beige text-center">
           { Books }
           </div>
-          <div className="row justify-content-space-between bg-custom-blue text-light">
-            <div className="col-md-6">
+          <div className="row justify-content-center bg-custom-blue text-light p-5">
+            <div className="col-md-6 mt-4">
               <h4 className="text-center">Some book news</h4>
-              <p className="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+              <p className="m-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
                 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
                 nisi ut aliquip ex ea commodo consequat.</p>
             </div>
@@ -68,7 +68,6 @@ export function Home ( props ) {
             </div>
           </div>
       </div>
-       </>
     )
   }
   

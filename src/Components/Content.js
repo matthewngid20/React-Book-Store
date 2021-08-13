@@ -201,7 +201,7 @@ export function Content(props) {
     }
 
     return (
-      <div className="container">
+      <div className="container-fluid">
         <Switch>
           <Route exact path="/">
             <Home data={bookData} />

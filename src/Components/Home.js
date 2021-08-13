@@ -41,6 +41,7 @@ export function Home ( props ) {
       )
     })
     return(
+      
       <div className="home">
 
           <div className="row mt-4">
@@ -59,7 +60,6 @@ export function Home ( props ) {
                 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
                 nisi ut aliquip ex ea commodo consequat.</p>
             </div>
-
             <div className="col-md-4">
               <div className="row mt-4 text-center">
                 <p>(book cover goes here)</p>

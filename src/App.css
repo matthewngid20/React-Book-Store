@@ -88,3 +88,7 @@ img{
   background-color: #444477;
   color: #ffffff;
 }
+
+.review-form-custom:focus{
+  background-color: #dbd1c5;
+}

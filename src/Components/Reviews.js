@@ -19,11 +19,11 @@ export function Reviews ( props ) {
     const Items = elements.map( (item) => {
       if( item === 1 ) {
         // return solid star if value is 1
-        return <i className="fas fa-star"></i>
+        return <i className="fas fa-star" style={{color:"yellow"}}></i>
       }
       else {
         // return empty star otherwise (value is 0)
-        return <i class="far fa-star"></i>
+        return <i className="far fa-star" style={{color:"yellow"}}></i>
       }
     })
     
@@ -37,20 +37,23 @@ export function Reviews ( props ) {
   if( reviews ) {
     const ReviewItems = reviews.map( (item,key) => {
       return (
-      <div className="review card my-2 bg-custom-review" key={key}>
-        <div className="card-body">
-          <h6 className="card-title">{item.comment}</h6>
-          <Stars number={item.stars}/>
-
+        <div className="col-md-4">
+          <div className="card my-2 bg-custom-review" key={key}>
+            <div className="card-body" >
+              <Stars number={item.stars}/>
+              <p className="card-title mt-3">{item.comment}</p>
+            </div>
+          </div>
         </div>
-      </div>
       )
     })
     return(
     <div className="reviews">
       <h3 className="text-center">Reviews</h3>
       <p className="text-center mb-4">({reviews.length} reviews)</p>
-      {ReviewItems}
+      <div className="row">
+        {ReviewItems}
+      </div>
     </div>
   )}
   else {

@@ -154,7 +154,7 @@ export function Detail(props) {
                   <option value="5">5 stars</option>
                 </select>
                 <label className="mt-2">Your review (no spoilers!)</label>
-                <textarea name="comment" cols="30" rows="3" className="form-control bg-custom-beige mt-2" placeholder="This book made me feel..."></textarea>
+                <textarea name="comment" cols="30" rows="3" className="form-control bg-custom-beige mt-2 review-form-custom" placeholder="This book made me feel..."></textarea>
                 <input type="hidden" name="bookId" value={bookId} />
                 <input type="hidden" name="userId" value={(props.user) ? props.user.uid: ""} />
                 <input type="hidden" name="userName" value={(props.user) ? props.user.displayName : ""} />

@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router";
 import {Spinner} from './Spinner'
 import { Reviews } from "./Reviews";
+import ReactStars from "react-rating-stars-component";
+import React from "react";
+import { render } from "react-dom";
 
 export function Detail(props) {
   const [book, setBook] = useState()
@@ -80,6 +83,18 @@ export function Detail(props) {
     }
   }
 
+  const starRating = {
+    size: 24,
+    count: 5,
+    isHalf: false,
+    value: 0,
+    activeColor: "yellow",
+    onChange: newValue => {
+      console.log(`Selected rating is: ${newValue}`);
+      return newValue;
+    }
+  };
+
   if (!book) {
     return <Spinner size={64}/>
   }
@@ -146,13 +161,21 @@ export function Detail(props) {
               <h5>Review {book.title} ({book.year}) by {book.author}</h5>
               <form id="review" onSubmit={handleReview}>
                 <label htmlFor="stars" className="mt-2">Your rating</label>
-                <select className="form-select bg-custom-beige mt-2" name="stars" id="stars" defaultValue="5">
-                  <option value="1">1 star</option>
-                  <option value="2">2 stars</option>
-                  <option value="3">3 stars</option>
-                  <option value="4">4 stars</option>
-                  <option value="5">5 stars</option>
-                </select>
+
+                {/* Needs to be fixed */}
+
+                <ReactStars {...starRating} />
+                <input type="hidden" name="stars" id="stars" defaultValue="0" value={starRating.onChange} />
+
+                {/* <select className="form-select bg-custom-beige mt-2" name="stars" id="stars" defaultValue="5">
+                      <option value="1">1 star</option>
+                      <option value="2">2 stars</option>
+                      <option value="3">3 stars</option>
+                      <option value="4">4 stars</option>
+                      <option value="5">5 stars</option>
+                    </select>
+                 */}
+                 
                 <label className="mt-2">Your review (no spoilers!)</label>
                 <textarea name="comment" cols="30" rows="3" className="form-control bg-custom-beige mt-2 review-form-custom" placeholder="This book made me feel..."></textarea>
                 <input type="hidden" name="bookId" value={bookId} />

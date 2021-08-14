@@ -1,5 +1,6 @@
 import { NavLink, Link } from 'react-router-dom';
 import '../App.css'
+import image from '../resources/website_logo.png';
 
 export function Header(props) {
   const SiteNav = props.navigation.map((item, itemKey) => {
@@ -16,7 +17,9 @@ export function Header(props) {
 
       <div className="container-fluid">
 
-        <Link className="navbar-brand order-0 order-sm-0 order-md-0 text-custom" to="/">{props.name}</Link>
+        <Link className="navbar-brand text-custom" to="/">
+          <img src={image} width="auto" height="30"/>
+        </Link>
         <button 
           className="navbar-toggler order-3 order-sm-4" 
           type="button" 

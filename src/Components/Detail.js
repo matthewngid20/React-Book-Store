@@ -108,9 +108,9 @@ export function Detail(props) {
           <div className="row">
             <div className="col-md-auto">
               <img 
-              className="img-fluid" 
+              className="img-fluid rounded" 
               src={book.cover_image} 
-              style={{width: 'auto', height: '400px', borderRadius:'5px'}}
+              style={{width: 'auto', height: '400px'}}
                 />
             </div>
 

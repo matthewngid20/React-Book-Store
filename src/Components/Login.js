@@ -13,6 +13,8 @@ export function Login ( props ) {
   const [validPassword,setValidPassword] = useState()
   const [passwordErrors,setPasswordErrors] = useState()
   const [validForm,setValidForm] = useState(false)
+  const [message,setMessage] = useState()
+  const [error,setError] = useState(false)
 
   const history = useHistory()
   const query = useQuery()
@@ -37,12 +39,16 @@ export function Login ( props ) {
     props.handler( data.get('email'), data.get('password') )
     .then( (response) => {
       if(response === true ) {
+        setMessage('Login successful. You will soon be redirected.')
+        setError(false)
         console.log(returnPath)
         history.push( (returnPath) ? '/'+ returnPath : '/' )
       }
     })
     .catch( (error) => {
-      console.log( error )
+      setMessage('The email or password entered were incorrect.')
+      console.log(error)
+      setError(true)
     })
   }
 
@@ -50,6 +56,19 @@ export function Login ( props ) {
     const email = event.target.value
     let errors = []
     
+  }
+
+  const Feedback = (props) => {
+    setTimeout( () => {
+      setMessage(null)
+      setError(false)
+    }, props.duration )
+    return(
+      <div className={ (error) ? "alert alert-danger" : "alert alert-success" }
+      style={{ display: (message) ? "block" : "none" }}>
+        {props.content}
+      </div>
+    )
   }
 
   return(
@@ -69,6 +88,9 @@ export function Login ( props ) {
             Login
           </button>
         </div>
+        <div className="my-3">
+            <Feedback duration={3000} content={message} />
+          </div>
       </form>
     </div>
   )

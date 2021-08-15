@@ -92,3 +92,7 @@ img{
 .review-form-custom:focus{
   background-color: #dbd1c5;
 }
+
+.container-fluid{
+  padding: 0 !important;
+}

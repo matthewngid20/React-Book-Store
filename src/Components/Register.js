@@ -1,14 +1,25 @@
 import { useState,useEffect } from "react"
+import { useHistory, useLocation } from "react-router"
 import {emailValidator, userNameValidator, passwordValidator} from './Validators'
+import { Link } from 'react-router-dom'
+
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search)
+}
 
 export function Register(props) {
-  const [validUserName,setValidUserName] = useState()
-  const [userNameErrors,setUserNameErrors] = useState([])
-  const [validEmail,setValidEmail] = useState()
-  const [emailErrors,setEmailErrors] = useState([])
-  const [validPassword,setValidPassword] = useState()
-  const [passwordErrors,setPasswordErrors] = useState([])
-  const [validForm,setValidForm] = useState(false)
+
+  const history = useHistory()
+  const query = useQuery()
+
+  const [returnPath, setReturnPath] = useState()
+  const [validUserName, setValidUserName] = useState()
+  const [userNameErrors, setUserNameErrors] = useState([])
+  const [validEmail, setValidEmail] = useState()
+  const [emailErrors, setEmailErrors] = useState([])
+  const [validPassword, setValidPassword] = useState()
+  const [passwordErrors, setPasswordErrors] = useState([])
+  const [validForm, setValidForm] = useState(false)
 
   useEffect( () => {
     if( validUserName && validEmail && validPassword ) {
@@ -19,10 +30,25 @@ export function Register(props) {
     }
   },[validUserName,validEmail,validPassword])
 
+  useEffect(() => {
+    const path = query.get('returnPath')
+    if (path !== undefined) {
+      setReturnPath(path)
+    }
+  },[ query ])
+
   const submitHandler = (event) => {
     event.preventDefault()
     const data = new FormData(event.target)
-    props.handler(data.get('email'), data.get('password'))
+    props.handler(data.get('username'), data.get('email'), data.get('password'))
+      .then((response) => {
+        if (response) {
+          history.push((returnPath) ? '/' + returnPath : '/')
+        }
+      })
+      .catch((error) => {
+        console.error();
+      })
   }
 
   const validateUserName = (event) => {
@@ -113,6 +139,9 @@ export function Register(props) {
             Register
           </button>
         </div>
+        <div className="my-2 text-center">
+            <Link className="text-light" to="login">Already have an account? Login here.</Link>
+          </div>
       </form>
     </div>
   )

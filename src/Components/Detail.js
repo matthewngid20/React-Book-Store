@@ -82,17 +82,20 @@ export function Detail(props) {
       history.push('/login/'+bookId)
     }
   }
+  const [rating, setRating] = useState(0) // initial rating value
 
+  // Catch Rating value
+  const handleRating = (rate) => {
+    setRating(rate)
+    // Some logic
+  }
   const starRating = {
     size: 24,
     count: 5,
     isHalf: false,
     value: 0,
     activeColor: "yellow",
-    onChange: newValue => {
-      console.log(`Selected rating is: ${newValue}`);
-      return newValue;
-    }
+    onChange: handleRating
   };
 
   if (!book) {
@@ -165,9 +168,9 @@ export function Detail(props) {
                 {/* Needs to be fixed */}
 
                 <ReactStars {...starRating} />
-                <input type="hidden" name="stars" id="stars" defaultValue="0" value={starRating.onChange} />
-
-                {/* <select className="form-select bg-custom-beige mt-2" name="stars" id="stars" defaultValue="5">
+                <input type="hidden" name="stars" id="stars" defaultValue="0" value={rating} />
+{/* 
+                <select className="form-select bg-custom-beige mt-2" name="stars" id="stars" defaultValue="5">
                       <option value="1">1 star</option>
                       <option value="2">2 stars</option>
                       <option value="3">3 stars</option>
@@ -175,7 +178,6 @@ export function Detail(props) {
                       <option value="5">5 stars</option>
                     </select>
                  */}
-                 
                 <label className="mt-2">Your review (no spoilers!)</label>
                 <textarea name="comment" cols="30" rows="3" className="form-control bg-custom-beige mt-2 review-form-custom" placeholder="This book made me feel..."></textarea>
                 <input type="hidden" name="bookId" value={bookId} />

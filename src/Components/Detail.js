@@ -104,20 +104,20 @@ export function Detail(props) {
   else {
     return (
       
-      <div className="container">
+      <div className="container-fluid">
 
         {/* Book info section */}
         <div className="bg-custom-blue text-light p-5">
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-auto">
               <img 
-              className="img-fluid" 
+              className="img-fluid rounded" 
               src={book.cover_image} 
-              style={{width: '300px', height: '100%'}}
+              style={{width: 'auto', height: '400px'}}
                 />
             </div>
 
-            <div className="col-md-6">
+            <div className="col-md-auto" style={{marginLeft:'30px'}}>
               <h3>{book.title} ({book.year})</h3>
               <h5>Author(s): {book.author}</h5>
               <p>Series: {book.series}</p>

@@ -49,7 +49,7 @@ export function Header(props) {
             <i className="fas fa-heart"></i>
           </Link>
           <Link className="nav-link px-3 py-sm-0 " to="/profile">
-            <span className="d-none d-sm-inline-block mx-2"></span>
+            <span className="d-none d-sm-inline-block mx-2">Profile</span>
             <i className="fas fa-user-circle"></i>
           </Link>
           <Link className="nav-link px-3 py-sm-0 " to="#">

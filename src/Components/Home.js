@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import '../App.css';
 import image from '../resources/website_banner.png';
+import imageNews from '../resources/book_news.jpg'
 
 import { Spinner } from "./Spinner";
 
@@ -51,18 +52,18 @@ export function Home ( props ) {
           <div className="row justify-content-center bg-custom-beige text-center">
           { Books }
           </div>
-          <div className="row justify-content-center bg-custom-blue text-light p-5">
-            <div className="col-md-6 mt-4">
+          <div className="row justify-content-center bg-custom-blue text-light align-items-center">
+            <div className="col-md-6">
               <h4 className="text-center">Some book news</h4>
               <p className="m-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
                 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
                 nisi ut aliquip ex ea commodo consequat.</p>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4 p-3">
               <div className="row mt-4 text-center">
-                <p>(book cover goes here)</p>
+              <img src={imageNews} className="img-fluid rounded  mx-auto d-block" style={{width:'auto', height:'250px'}}/>
               </div>
-              <div className="row mt-4 text-center">
+              <div className="row mt-4 mx-3 text-center">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
               </div>
             </div>

@@ -16,8 +16,8 @@ const Nav = [
 const AuthNav = [
   {name: "Home", link: "/"},
   {name: "About", link: "/about"},
-  {name: "Logout", link: "/logout"},
   {name: "Add data", link: "/add"},
+  {name: "Logout", link: "/logout"},
 ]
 
 function App() {

@@ -13,6 +13,7 @@ import { Login } from './Login';
 import { Logout } from './Logout';
 import { Detail } from './Detail';
 import { AddData } from './Admin/AddData';
+import { Header } from './Header';
 
 export function Content(props) {
   const [auth, setAuth] = useState(false)
@@ -206,6 +207,7 @@ export function Content(props) {
           <Route exact path="/">
             <Home data={bookData} />
           </Route>
+        <Header data={bookData}/>
           <Route path="/about">
             <About />
           </Route>

@@ -1,8 +1,17 @@
 import { NavLink, Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
 import '../App.css'
 import image from '../resources/website_logo.png';
 
+import { firebaseConfig } from '../Config/Config';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/storage'; 
+import 'firebase/firestore';
+
 export function Header(props) {
+  
+
   const SiteNav = props.navigation.map((item, itemKey) => {
     return (
       <NavLink key={itemKey} exact to={item.link} className="nav-link" activeClassName="active">
@@ -32,12 +41,7 @@ export function Header(props) {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <form className="d-flex flex-fill my-3 my-md-0 flex-fill order-4 order-sm-3 order-md-2">
-          <input className="form-control me-md-2" type="search" placeholder="Search for books" aria-label="Search" />
-          <button className="btn btn-outline-custom" type="submit">
-            <i className="fas fa-search"></i>
-          </button>
-        </form>
+        
 
         <nav 
           className="navbar navbar-nav flex-row mx-2 order-2 order-sm-2 order-md-3" 

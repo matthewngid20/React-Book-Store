@@ -25,7 +25,12 @@
 img{
   padding:0 !important;
 }
-
+.searchbar{
+  margin:auto;
+  width:300px;
+  display:flex;
+  padding:20px;
+}
 
 
 

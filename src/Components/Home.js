@@ -8,10 +8,12 @@ import { Spinner } from "./Spinner";
 
 export function Home ( props ) {
   const [ data, setData ] = useState()
- 
+  const [searchBook, setSearchBook] = useState('') 
+
   useEffect( () => {
     setData( props.data )
   }, [props.data] )
+  
   
 
   if( !data ) {
@@ -20,7 +22,16 @@ export function Home ( props ) {
     )
   }
   else {
-    const Books = data.map( (item, key) => {
+    const Books = data.filter((val) => {
+      const title = val.title.toLowerCase().includes(searchBook.toLowerCase())
+      const author = val.author.toLowerCase().includes(searchBook.toLowerCase())
+      if(searchBook == ""){
+        return val
+      }else if (title || author){
+        console.log(val)
+        return val
+      }
+    }).map( (item, key) => {
       return(
         <div className="container-slider col-md-3 my-2 zoom" key={key}>
           <div className="card book position-relative bg-custom-beige text-custom">
@@ -44,13 +55,22 @@ export function Home ( props ) {
     })
     return(
       <div className="home">
-
+        
           <div className="row">
             <img src={image} className="img-fluid" style={{width:'100%', height:'100%'}}/>
           </div>
-
           <div className="row justify-content-center bg-custom-beige text-center">
+           <div className ="row"> 
+          <form className = "searchbar">
+          <input className="form-control me-md-2" type="text" placeholder="Search for books" aria-label="Search" 
+          onChange= {(event) => setSearchBook(event.target.value)} />
+          <button className="btn btn-outline-custom" type="submit">
+            <i className="fas fa-search"></i>
+          </button>
+        </form>
+        </div>
           { Books }
+          
           </div>
           <div className="row justify-content-center bg-custom-blue text-light align-items-center">
             <div className="col-md-6">

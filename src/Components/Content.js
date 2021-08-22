@@ -13,7 +13,7 @@ import { Login } from './Login';
 import { Logout } from './Logout';
 import { Detail } from './Detail';
 import { AddData } from './Admin/AddData';
-import{Profile} from './Profile'
+import{Profile} from './Profile';
 
 export function Content(props) {
   const [auth, setAuth] = useState(false)

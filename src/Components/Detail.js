@@ -1,16 +1,22 @@
 import { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router";
+import { useParams, useHistory,useLocation} from "react-router";
 import {Spinner} from './Spinner'
 import { Reviews } from "./Reviews";
 import ReactStars from "react-rating-stars-component";
 import React from "react";
 import { render } from "react-dom";
 
+const useQuery = () => {
+  return new URLSearchParams( useLocation().search )
+}
+
 export function Detail(props) {
   const [book, setBook] = useState()
   const [favourites,setFavourites] = useState()
   const [showReview, setShowReview] = useState(false)
   const [bookReviews,setBookReviews] = useState()
+  const [message,setMessage] = useState()
+  const [returnPath,setReturnPath] = useState()
   // disable review button if user has reviewed the book
   const [disableReview, setDisableReview] = useState( false )
   // disable favourite button if user has added the book
@@ -19,7 +25,14 @@ export function Detail(props) {
 
   const { bookId } = useParams()
   const history = useHistory()
-  
+  const query = useQuery()
+
+  useEffect( () => {
+    const path = query.get('returnPath')
+    if( path !== undefined ) {
+      setReturnPath( path )
+    }
+  })
 
   useEffect(() => {
     if (!book) {
@@ -72,6 +85,8 @@ export function Detail(props) {
         setShowReview(false)
       } )
       .catch( error => console.log(error) )
+      
+
   }
 
   const addToFavourites = () => {

@@ -10,7 +10,11 @@ export const Profile = () => {
                 <div id="emailHelp" class="form-text"> We'll never share your email with anyone else.</div>
             </div>
             <div className="mb-3">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label">Old Password</label>
+                <input type="password" class="form-control" id="password"/>
+            </div>
+            <div className="mb-3">
+                <label for="password" class="form-label">New Password</label>
                 <input type="password" class="form-control" id="password"/>
             </div>
             <div className="mb-3">

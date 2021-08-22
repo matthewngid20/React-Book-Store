@@ -13,7 +13,7 @@ import { Login } from './Login';
 import { Logout } from './Logout';
 import { Detail } from './Detail';
 import { AddData } from './Admin/AddData';
-// import{Profile} from './Profile'
+import{Profile} from './Profile'
 
 export function Content(props) {
   const [auth, setAuth] = useState(false)
@@ -219,9 +219,9 @@ export function Content(props) {
           <Route path="/logout">
             <Logout handler={logoutUser} />
           </Route>
-          {/* <Route path="/profile">
+          <Route path="/profile">
             <Profile />
-          </Route> */}
+          </Route>
           <Route path="/book/:bookId">
             <Detail 
             handler={getDetail} 

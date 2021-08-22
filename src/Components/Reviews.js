@@ -38,8 +38,10 @@ export function Reviews ( props ) {
     const ReviewItems = reviews.map( (item,key) => {
       return (
         <div className="col-md-4">
+          
           <div className="card my-2 bg-custom-review" key={key}>
             <div className="card-body" >
+              <p className="card-title mt-3">Review by: {item.userId}</p>
               <Stars number={item.stars}/>
               <p className="card-title mt-3">{item.comment}</p>
             </div>

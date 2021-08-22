@@ -209,7 +209,7 @@ export function Detail(props) {
                 <label className="mt-2">Your review (no spoilers!)</label>
                 <textarea name="comment" cols="30" rows="3" className="form-control bg-custom-beige mt-2 review-form-custom" placeholder="This book made me feel..."></textarea>
                 <input type="hidden" name="bookId" value={bookId} />
-                <input type="hidden" name="userId" value={(props.user) ? props.user.uid: ""} />
+                <input type="hidden" name="userId" value={(props.user.email)} />
                 <input type="hidden" name="userName" value={(props.user) ? props.user.displayName : ""} />
                 <div className="d-flex justify-content-center">
                   <button type="submit" className="btn btn-custom-blue m-4">Submit</button>

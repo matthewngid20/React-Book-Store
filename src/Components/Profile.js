@@ -1,27 +1,89 @@
 import React from 'react'
-import { useState } from 'react/cjs/react.development'
+import { useState,useEffect } from 'react'
 import "firebase/auth"
 import firebase from 'firebase'
 import { IsConstructor } from 'es-abstract'
+import { passwordValidator } from './Validators'
 
 
 export const Profile = (props) => {
 
-    const [password, setPassword] = useState()
-
-    const user = firebase.auth().currentUser
+    const [validPassword, setValidPassword] = useState()
+    const [passwordErrors, setPasswordErrors] = useState([])
+    const [validForm, setValidForm] = useState(false)
+    const [message,setMessage] = useState()
+    const [error,setError] = useState(false)
     
+    useEffect( () => {
+        if( validPassword ) {
+          setValidForm( true )
+        }
+        else {
+          setValidForm( false )
+        }
+      },[validPassword])
 
 
-  
+    const submitHandler = (event) => {
+        event.preventDefault()
+        const data = new FormData(event.target)
+        props.handler(data.get('newpassword'))
+          .then((response) => {
+            if (response) {
+                setMessage('Password updated successfully.')
+                setError(false)
+            }
+          })
+          .catch((error) => {
+            setMessage('Error updating password.')
+            console.log(error)
+            setError(true)
+          })
+      }
 
+      const validatePassword = ( event) => {
+        const password = event.target.value
+        const validate = passwordValidator( password )
+        if( validate.valid === false ) {
+          setPasswordErrors( validate.errors.join(', ') )
+          setValidPassword( false )
+        }
+        else {
+          setValidPassword( true )
+        }
+      }
+
+      const validationClass = ( mainClass, validState) => {
+        if( validState === true ) {
+          return `${mainClass}  is-valid`
+        }
+        else if( validState === false ) {
+          return `${mainClass}  is-invalid`
+        }
+        else {
+          return mainClass
+        }
+      }
+
+      const Feedback = (props) => {
+        setTimeout( () => {
+          setMessage(null)
+          setError(false)
+        }, props.duration )
+        return(
+          <div className={ (error) ? "alert alert-danger" : "alert alert-success" }
+          style={{ display: (message) ? "block" : "none" }}>
+            {props.content}
+          </div>
+        )
+      }
 
     return (
         <div>
             {/* User modification section */}
             <div className="row p-5 bg-custom-blue text-light" style={{height:'100%'}}>
                 <h3 className="text-center">My profile</h3>
-                <form className="col-md-6 offset-md-3 mt-4" id="">
+                <form className="col-md-6 offset-md-3 mt-4" id="update" onSubmit={submitHandler}>
                 <h5>Update your details</h5>
                     <div className="mb-3 mt-4">
                         <label for="username" className="form-label">Update your username</label>
@@ -29,34 +91,49 @@ export const Profile = (props) => {
                     </div>
                     <div className="mb-3">
                         <label for="password" className="form-label">Update your password</label>
-                        <input type="password" className="form-control" id="password" name="oldpassword" placeholder="Old password" />
+                        <input 
+                        type="password" 
+                        className="form-control" 
+                        id="oldpassword" 
+                        name="oldpassword" 
+                        placeholder="Old password" 
+                        />
                     </div>
                     <div className="mb-3">
-                        <input type="password" className="form-control" name="newpassword" id="password" placeholder="New password"/>
+                        <input 
+                        type="password" 
+                        className={validationClass("form-control",validPassword)}
+                        name="newpassword" 
+                        id="newpassword" 
+                        placeholder="New password"
+                        onChange={validatePassword}/>
                     </div>
                     <div className="mb-3">
-                        <input type="password" className="form-control" name="newpasswordconfirm" id="confirmedPassword"placeholder="Confirm new password"/>
+                        <input type="password" className="form-control" name="confirmpassword" id="confirmpassword" placeholder="Confirm new password"/>
                     </div>
+                    <div className="invalid-feedback">{passwordErrors}</div>
                     <div className="d-flex justify-content-center mt-3">
                         <button type="submit" className="btn btn-custom-blue flex-fill mt-2 "
                             //disabled = { (!validForm) ? true : false }
                         >
                             Update
                         </button>
-                        </div>
+                    </div>
+                    <div className="my-3">
+                        <Feedback duration={3000} content={message} />
+                    </div>
                 </form>
             </div>
 
             {/* View past reviews section */}
             <div className="row p-4 bg-custom-green text-light ">
                 <div className="col-md-6 offset-md-3 mt-4">
-                   <h4>Your activity</h4> 
+                   <h5>Your activity</h5> 
                    <div style={{backgroundColor:'#a1ac9e'}}>
                        <p>Past reviews go here</p>
                    </div>
                 </div>
             </div>
-
         </div>
     )
 }

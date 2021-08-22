@@ -201,6 +201,21 @@ export function Content(props) {
       })
     }
 
+    const updatePassword = (newpassword) => {
+      return new Promise((resolve, reject) => {
+        firebase.auth().currentUser.updatePassword(newpassword)
+          .then(() => {
+            
+            resolve( true )
+          })
+          .catch((error) => {
+            // do something with the error
+            console.log(error)
+            reject( error )
+          })
+      })
+    }
+
     return (
       <div className="container-fluid">
         <Switch>
@@ -220,7 +235,7 @@ export function Content(props) {
             <Logout handler={logoutUser} />
           </Route>
           <Route path="/profile">
-            <Profile />
+            <Profile handler={updatePassword}  />
           </Route>
           <Route path="/book/:bookId">
             <Detail 

@@ -1,10 +1,11 @@
-import React from 'react'
-import { useState,useEffect } from 'react'
-import "firebase/auth"
-import firebase from 'firebase'
-import { IsConstructor } from 'es-abstract'
-import { passwordValidator } from './Validators'
-
+import React from 'react';
+import { useState,useEffect } from 'react';
+import "firebase/auth";
+import firebase from 'firebase';
+import { IsConstructor } from 'es-abstract';
+import { passwordValidator } from './Validators';
+import { UserReviews } from "./UserReviews";
+import ReactStars from "react-rating-stars-component";
 
 export const Profile = (props) => {
 
@@ -13,6 +14,9 @@ export const Profile = (props) => {
     const [validForm, setValidForm] = useState(false)
     const [message,setMessage] = useState()
     const [error,setError] = useState(false)
+    const [reviews,setReviews] = useState()
+    const [bookReviews,setBookReviews] = useState()
+    const [book, setBook] = useState()
     
     useEffect( () => {
         if( validPassword ) {
@@ -41,42 +45,70 @@ export const Profile = (props) => {
           })
       }
 
-      const validatePassword = ( event) => {
-        const password = event.target.value
-        const validate = passwordValidator( password )
-        if( validate.valid === false ) {
-          setPasswordErrors( validate.errors.join(', ') )
-          setValidPassword( false )
-        }
-        else {
-          setValidPassword( true )
-        }
-      }
+    const validatePassword = ( event) => {
+    const password = event.target.value
+    const validate = passwordValidator( password )
+    if( validate.valid === false ) {
+        setPasswordErrors( validate.errors.join(', ') )
+        setValidPassword( false )
+    }
+    else {
+        setValidPassword( true )
+    }
+    }
 
-      const validationClass = ( mainClass, validState) => {
-        if( validState === true ) {
-          return `${mainClass}  is-valid`
-        }
-        else if( validState === false ) {
-          return `${mainClass}  is-invalid`
-        }
-        else {
-          return mainClass
-        }
-      }
+    const validationClass = ( mainClass, validState) => {
+    if( validState === true ) {
+        return `${mainClass}  is-valid`
+    }
+    else if( validState === false ) {
+        return `${mainClass}  is-invalid`
+    }
+    else {
+        return mainClass
+    }
+    }
 
-      const Feedback = (props) => {
-        setTimeout( () => {
-          setMessage(null)
-          setError(false)
-        }, props.duration )
-        return(
-          <div className={ (error) ? "alert alert-danger" : "alert alert-success" }
-          style={{ display: (message) ? "block" : "none" }}>
-            {props.content}
-          </div>
+    const Feedback = (props) => {
+    setTimeout( () => {
+        setMessage(null)
+        setError(false)
+    }, props.duration )
+    return(
+        <div className={ (error) ? "alert alert-danger" : "alert alert-success" }
+        style={{ display: (message) ? "block" : "none" }}>
+        {props.content}
+        </div>
         )
-      }
+    }
+
+    // Get user's reviews (the ones with their usernames)
+    useEffect(() => {
+        if (!book) {
+          props.handler(props.user.email)
+            .then(() => console.log("Successfully loaded reviews"))
+            .catch((error) => console.log(error))
+        }
+        if( !bookReviews ) {
+          props.getReviews( props.user.email )
+          .then( (result) => {
+            setBookReviews( result )
+          })
+          .catch( (error) => console.log(error) )
+        }
+        // get favourites here
+      })
+
+/*     useEffect( () => {
+        if( bookReviews && props.user ) {
+        bookReviews.forEach( (review) => {
+            if( review.userId == props.user.uid ) {
+            setDisableReview( true )
+            }
+        })
+        }
+        // check if user has this book in favourites, disable fav button if yes
+    }, [bookReviews]) */
 
     return (
         <div>
@@ -129,9 +161,9 @@ export const Profile = (props) => {
             <div className="row p-4 bg-custom-green text-light ">
                 <div className="col-md-6 offset-md-3 mt-4">
                    <h5>Your activity</h5> 
-                   <div style={{backgroundColor:'#a1ac9e'}}>
-                       <p>Past reviews go here</p>
-                   </div>
+                    <div className="d-flex">
+                        <UserReviews items={bookReviews}/>
+                    </div>
                 </div>
             </div>
         </div>

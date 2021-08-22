@@ -13,7 +13,7 @@ import { Login } from './Login';
 import { Logout } from './Logout';
 import { Detail } from './Detail';
 import { AddData } from './Admin/AddData';
-import{Profile} from './Profile';
+import { Profile } from './Profile';
 
 export function Content(props) {
   const [auth, setAuth] = useState(false)
@@ -216,6 +216,24 @@ export function Content(props) {
       })
     }
 
+  // Get user's past reviews
+   const getUserReviews = ( userId ) => {
+    return new Promise( (resolve,reject) => {
+      db.collection('reviews').where('userId', "==", userId ).get()
+      .then( (res) => {
+        let reviews = []
+        res.forEach( (doc) => {
+          let review = doc.data()
+          reviews.push( review )
+        })
+        resolve( reviews )
+      })
+      .catch( (error) => {
+        reject( error )
+      })
+    })
+  }
+
     return (
       <div className="container-fluid">
         <Switch>
@@ -235,7 +253,11 @@ export function Content(props) {
             <Logout handler={logoutUser} />
           </Route>
           <Route path="/profile">
-            <Profile handler={updatePassword}  />
+            <Profile 
+            handler={updatePassword} 
+            getReviews={getUserReviews}
+            auth={auth} 
+            user={user} />
           </Route>
           <Route path="/book/:bookId">
             <Detail 
@@ -254,37 +276,3 @@ export function Content(props) {
       </div>
     )
   }
-  // const checkUserName = ( name ) => {
-  //   return new Promise( (resolve,reject) => {
-  //     db.collection('users').where('username', '==', name )
-  //     .then( (res) => resolve(res.data()) )
-  //     .catch( (error) => reject(error) )
-  //   })
-  // }
-
-  
-
-
-
-
-
-
-
-
-
-  
-
-  // const registerUser = (email, password) => {
-  //   return new Promise( (resolve, reject) => {
-  //     firebase.auth().createUserWithEmailAndPassword(email, password)
-  //     .then((userCredential) => {
-  //       setUser(userCredential.user)
-  //       setAuth(true)
-  //       props.authHandler(true)
-  //       resolve( true )
-  //     })
-  //     .catch((error) => {
-  //       reject( error )
-  //     })
-  //   })
-  // }

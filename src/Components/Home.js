@@ -64,9 +64,6 @@ export function Home ( props ) {
           <form className = "searchbar">
           <input className="form-control me-md-2" type="text" placeholder="Search for books" aria-label="Search" 
           onChange= {(event) => setSearchBook(event.target.value)} />
-          <button className="btn btn-outline-custom" type="submit">
-            <i className="fas fa-search"></i>
-          </button>
         </form>
         </div>
           { Books }

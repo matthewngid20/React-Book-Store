@@ -28,8 +28,8 @@ img{
 .searchbar{
   margin:auto;
   width:300px;
-  display:flex;
   padding:20px;
+  margin-bottom:60px;
 }
 
 

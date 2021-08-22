@@ -207,7 +207,6 @@ export function Content(props) {
           <Route exact path="/">
             <Home data={bookData} />
           </Route>
-        <Header data={bookData}/>
           <Route path="/about">
             <About />
           </Route>

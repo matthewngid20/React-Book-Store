@@ -12,6 +12,11 @@ import 'firebase/firestore';
 export function Header(props) {
   
 
+  
+
+
+
+
   const SiteNav = props.navigation.map((item, itemKey) => {
     return (
       <NavLink key={itemKey} exact to={item.link} className="nav-link" activeClassName="active">

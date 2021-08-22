@@ -10,12 +10,6 @@ import 'firebase/storage';
 import 'firebase/firestore';
 
 export function Header(props) {
-  
-
-  
-
-
-
 
   const SiteNav = props.navigation.map((item, itemKey) => {
     return (

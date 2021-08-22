@@ -144,6 +144,46 @@ export function Detail(props) {
           </div>          
         </div>
 
+        {/* Purchase section */}
+        <div className="bg-custom-beige text-custom p-5">
+        <h3 className="text-center">Where to read</h3>
+          <table className="table table-bordered mt-5 text-dark text-center">
+            <thead>
+              <tr>
+                <th colspan="2"><h5>Hardback</h5></th>
+                <th colspan="2"><h5>Paperback</h5></th>
+                <th colspan="2"><h5>eBook</h5></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row">Edition 1 - $24.99</td>
+                <td><i className="fas fa-cart-plus" style={{fontSize:'24px'}}></i></td>
+                <td scope="row">Edition 1 - $24.99</td>
+                <td><i className="fas fa-cart-plus" style={{fontSize:'24px'}}></i></td>
+                <td scope="row">Edition 1 - $24.99</td>
+                <td><i className="fas fa-cart-plus" style={{fontSize:'24px'}}></i></td>
+              </tr>
+              <tr>
+                <td scope="row">Edition 2 - $19.99</td>
+                <td><i className="fas fa-cart-plus" style={{fontSize:'24px'}}></i></td>
+                <td scope="row">Edition 2 - $19.99</td>
+                <td><i className="fas fa-cart-plus" style={{fontSize:'24px'}}></i></td>
+                <td scope="row">Edition 2 - $19.99</td>
+                <td><i className="fas fa-cart-plus" style={{fontSize:'24px'}}></i></td>
+              </tr>
+              <tr>
+                <td scope="row">Edition 3 - $24.99</td>
+                <td><i className="fas fa-cart-plus" style={{fontSize:'24px'}}></i></td>
+                <td scope="row">Edition 3 - $24.99</td>
+                <td><i className="fas fa-cart-plus" style={{fontSize:'24px'}}></i></td>
+                <td scope="row">Edition 3 - $24.99</td>
+                <td><i className="fas fa-cart-plus" style={{fontSize:'24px'}}></i></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
   
         {/* Review section */}
         <div className="bg-custom-brown text-light p-5">
@@ -164,20 +204,8 @@ export function Detail(props) {
               <h5>Review {book.title} ({book.year}) by {book.author}</h5>
               <form id="review" onSubmit={handleReview}>
                 <label htmlFor="stars" className="mt-2">Your rating</label>
-
-                {/* Needs to be fixed */}
-
                 <ReactStars {...starRating} />
                 <input type="hidden" name="stars" id="stars" defaultValue="0" value={rating} />
-{/* 
-                <select className="form-select bg-custom-beige mt-2" name="stars" id="stars" defaultValue="5">
-                      <option value="1">1 star</option>
-                      <option value="2">2 stars</option>
-                      <option value="3">3 stars</option>
-                      <option value="4">4 stars</option>
-                      <option value="5">5 stars</option>
-                    </select>
-                 */}
                 <label className="mt-2">Your review (no spoilers!)</label>
                 <textarea name="comment" cols="30" rows="3" className="form-control bg-custom-beige mt-2 review-form-custom" placeholder="This book made me feel..."></textarea>
                 <input type="hidden" name="bookId" value={bookId} />

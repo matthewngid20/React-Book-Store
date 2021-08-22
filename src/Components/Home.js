@@ -62,7 +62,11 @@ export function Home ( props ) {
           <div className="row justify-content-center bg-custom-beige text-center">
            <div className ="row"> 
           <form className = "searchbar">
-          <input className="form-control me-md-2" type="text" placeholder="Search for books" aria-label="Search" 
+          <input 
+          className="form-control me-md-2" 
+          type="text" 
+          placeholder="Search book titles and authors" 
+          aria-label="Search" 
           onChange= {(event) => setSearchBook(event.target.value)} />
         </form>
         </div>

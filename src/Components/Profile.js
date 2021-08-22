@@ -17,27 +17,46 @@ export const Profile = (props) => {
 
 
     return (
-        <>
-        <form  >
-            <div className="mb-3">
-                <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp"/>
-                <div id="emailHelp" class="form-text"> We'll never share your email with anyone else.</div>
+        <div>
+            {/* User modification section */}
+            <div className="row p-5 bg-custom-blue text-light" style={{height:'100%'}}>
+                <h3 className="text-center">My profile</h3>
+                <form className="col-md-6 offset-md-3 mt-4" id="">
+                <h5>Update your details</h5>
+                    <div className="mb-3 mt-4">
+                        <label for="username" className="form-label">Update your username</label>
+                        <input type="text" className="form-control" id="username" placeholder="New username"/>
+                    </div>
+                    <div className="mb-3">
+                        <label for="password" className="form-label">Update your password</label>
+                        <input type="password" className="form-control" id="password" name="oldpassword" placeholder="Old password" />
+                    </div>
+                    <div className="mb-3">
+                        <input type="password" className="form-control" name="newpassword" id="password" placeholder="New password"/>
+                    </div>
+                    <div className="mb-3">
+                        <input type="password" className="form-control" name="newpasswordconfirm" id="confirmedPassword"placeholder="Confirm new password"/>
+                    </div>
+                    <div className="d-flex justify-content-center mt-3">
+                        <button type="submit" className="btn btn-custom-blue flex-fill mt-2 "
+                            //disabled = { (!validForm) ? true : false }
+                        >
+                            Update
+                        </button>
+                        </div>
+                </form>
             </div>
-            <div className="mb-3">
-                <label for="password" class="form-label">Old Password</label>
-                <input type="password" class="form-control" id="password" name="oldpassword" />
+
+            {/* View past reviews section */}
+            <div className="row p-4 bg-custom-green text-light ">
+                <div className="col-md-6 offset-md-3 mt-4">
+                   <h4>Your activity</h4> 
+                   <div style={{backgroundColor:'#a1ac9e'}}>
+                       <p>Past reviews go here</p>
+                   </div>
+                </div>
             </div>
-            <div className="mb-3">
-                <label for="password" class="form-label">New Password</label>
-                <input type="password" class="form-control" name="newpassword" id="password"/>
-            </div>
-            <div className="mb-3">
-                <label for="confirmedPassword" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" name="newpasswordconfirm" id="confirmedPassword"/>
-            </div>
-            <button type="submit" class="btn btn-primary" >Update</button>
-        </form>
-        </>
+
+        </div>
     )
 }

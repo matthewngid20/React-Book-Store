@@ -30,6 +30,7 @@ img{
   width:300px;
   padding:20px;
   margin-bottom:60px;
+  border-radius:20px;
 }
 
 
@@ -100,4 +101,25 @@ img{
 
 .container-fluid{
   padding: 0 !important;
+}
+
+table.table-bordered{
+  border-top: none;
+  border-bottom:1px solid #473b2e;
+  border-left:1px solid #473b2e;
+  border-right:1px solid #473b2e;
+}
+table.table-bordered > thead > tr{
+  border-top:none;
+  border-bottom:1px solid #473b2e;
+  border-left:none;
+  border-right:none;
+}
+table.table-bordered > tbody > tr > td{
+  border:1px solid #473b2e;
+  background-color: #e4ded6;
+}
+
+.fa-cart-plus:hover {
+  color: #473b2e;;
 }

@@ -107,12 +107,7 @@ img{
   padding: 0 !important;
 }
 
-table.table-bordered{
-  border-top: none;
-  border-bottom:1px solid #473b2e;
-  border-left:1px solid #473b2e;
-  border-right:1px solid #473b2e;
-}
+
 table.table-bordered > thead > tr{
   border-top:none;
   border-bottom:1px solid #473b2e;

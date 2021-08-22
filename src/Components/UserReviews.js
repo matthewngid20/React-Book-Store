@@ -41,15 +41,17 @@ export function UserReviews ( props ) {
     if( reviews ) {
       const ReviewItems = reviews.map( (item,key) => {
         return (
-          <div className="" key={key}>
-              <Stars number={item.stars}/>
-              <p className="">{item.comment}</p>
-          </div>
+            <div key={key}>
+              <div className="col">
+                <Stars number={item.stars}/>
+                <p>{item.comment}</p>
+              </div>
+            </div>
         )
       })
       return(
       <div className="reviews">
-        <p>You left {reviews.length} reviews.</p>
+        <p>You left {reviews.length} reviews:</p>
         <div className="row">
           {ReviewItems}
         </div>

@@ -85,12 +85,12 @@ export const Profile = (props) => {
     // Get user's reviews (the ones with their usernames)
     useEffect(() => {
         if (!book) {
-          props.handler(props.user.email)
+          props.handler(props.user.userId )
             .then(() => console.log("Successfully loaded reviews"))
             .catch((error) => console.log(error))
         }
         if( !bookReviews ) {
-          props.getReviews( props.user.email )
+          props.getReviews( props.user.userId )
           .then( (result) => {
             setBookReviews( result )
           })

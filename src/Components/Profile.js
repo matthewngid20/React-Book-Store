@@ -32,18 +32,18 @@ export const Profile = (props) => {
         event.preventDefault()
         const data = new FormData(event.target)
         props.handler(data.get('newpassword'))
-          .then((response) => {
+        .then((response) => {
             if (response) {
                 setMessage('Password updated successfully.')
                 setError(false)
             }
-          })
-          .catch((error) => {
+        })
+        .catch((error) => {
             setMessage('Error updating password.')
             console.log(error)
             setError(true)
-          })
-      }
+        })
+    }
 
     const validatePassword = ( event) => {
     const password = event.target.value
@@ -96,19 +96,7 @@ export const Profile = (props) => {
           })
           .catch( (error) => console.log(error) )
         }
-        // get favourites here
       })
-
-/*     useEffect( () => {
-        if( bookReviews && props.user ) {
-        bookReviews.forEach( (review) => {
-            if( review.userId == props.user.uid ) {
-            setDisableReview( true )
-            }
-        })
-        }
-        // check if user has this book in favourites, disable fav button if yes
-    }, [bookReviews]) */
 
     return (
         <div>
@@ -116,22 +104,8 @@ export const Profile = (props) => {
             <div className="row p-5 bg-custom-blue text-light" style={{height:'100%'}}>
                 <h3 className="text-center">My profile</h3>
                 <form className="col-md-6 offset-md-3 mt-4" id="update" onSubmit={submitHandler}>
-                <h5>Update your details</h5>
-                    <div className="mb-3 mt-4">
-                        <label for="username" className="form-label">Update your username</label>
-                        <input type="text" className="form-control" id="username" placeholder="New username"/>
-                    </div>
-                    <div className="mb-3">
-                        <label for="password" className="form-label">Update your password</label>
-                        <input 
-                        type="password" 
-                        className="form-control" 
-                        id="oldpassword" 
-                        name="oldpassword" 
-                        placeholder="Old password" 
-                        />
-                    </div>
-                    <div className="mb-3">
+                <h5>Update your password</h5>
+                    <div className="mb-3 mt-3">
                         <input 
                         type="password" 
                         className={validationClass("form-control",validPassword)}
@@ -139,9 +113,6 @@ export const Profile = (props) => {
                         id="newpassword" 
                         placeholder="New password"
                         onChange={validatePassword}/>
-                    </div>
-                    <div className="mb-3">
-                        <input type="password" className="form-control" name="confirmpassword" id="confirmpassword" placeholder="Confirm new password"/>
                     </div>
                     <div className="invalid-feedback">{passwordErrors}</div>
                     <div className="d-flex justify-content-center mt-3">
@@ -160,8 +131,8 @@ export const Profile = (props) => {
             {/* View past reviews section */}
             <div className="row p-4 bg-custom-green text-light ">
                 <div className="col-md-6 offset-md-3 mt-4">
-                   <h5>Your activity</h5> 
-                    <div className="d-flex">
+                   <h4>Your activity</h4> 
+                    <div className="d-flex mt-4">
                         <UserReviews items={bookReviews}/>
                     </div>
                 </div>
